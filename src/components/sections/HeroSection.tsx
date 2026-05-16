@@ -28,8 +28,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export function HeroSection() {
   return (
     <section
-      id="profile"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-transparent to-accent-50/30 dark:from-primary-950/20 dark:to-accent-950/10" />
@@ -108,31 +107,17 @@ export function HeroSection() {
               className="mt-10 flex flex-wrap justify-center md:justify-start gap-4"
             >
               <Button asChild size="lg">
-                <Link href="#works">View Works</Link>
+                <Link href="/works">View Works</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="#resume">My Experience</Link>
+                <Link href="/experience">My Experience</Link>
               </Button>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted flex justify-center pt-2"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-muted" />
-        </motion.div>
-      </motion.div>
+
     </section>
   );
 }
