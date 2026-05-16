@@ -1,35 +1,125 @@
 @import "tailwindcss";
 
+/* ============================================
+   MakinoWorks — "間 (Ma)" Design System
+   Editorial Portfolio with Japanese Aesthetic
+   ============================================ */
+
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  --color-primary-950: #082f49;
+  /* Kintsugi Gold */
+  --color-gold-50: #fdf9ef;
+  --color-gold-100: #f9eccb;
+  --color-gold-200: #f0d88f;
+  --color-gold-300: #e5c25c;
+  --color-gold-400: #d4a832;
+  --color-gold-500: #c4a265;
+  --color-gold-600: #a8853a;
+  --color-gold-700: #8c6a2e;
+  --color-gold-800: #6b5024;
+  --color-gold-900: #4a3718;
+
+  /* Warm Neutrals */
+  --color-warm-50: #faf6ef;
+  --color-warm-100: #f0ebe0;
+  --color-warm-200: #ddd5c4;
+  --color-warm-300: #c4b99e;
+  --color-warm-400: #a69a7c;
+  --color-warm-500: #877b60;
+  --color-warm-600: #6b614d;
+  --color-warm-700: #534c3c;
+  --color-warm-800: #3a352b;
+  --color-warm-900: #221f1a;
+
+  /* Ink */
+  --color-ink-50: #f5f3f0;
+  --color-ink-100: #e8e4dd;
+  --color-ink-200: #cfc8bb;
+  --color-ink-300: #b0a693;
+  --color-ink-400: #8e8270;
+  --color-ink-500: #6d6355;
+  --color-ink-600: #544c42;
+  --color-ink-700: #3d3832;
+  --color-ink-800: #2a2622;
+  --color-ink-900: #0c0b09;
+
+  /* Font families */
+  --font-serif: var(--font-cormorant), "Georgia", serif;
+  --font-sans: var(--font-outfit), "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-space-mono), "Menlo", monospace;
 }
 
+/* ---- CSS Custom Properties ---- */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --background-rgb: 255, 255, 255;
+  /* Surface */
+  --bg: #faf6ef;
+  --bg-secondary: #f0ebe0;
+  --bg-tertiary: #e8e4dd;
+  --fg: #1a1816;
+  --fg-secondary: #544c42;
+  --muted: #877b60;
+  --accent: #c4a265;
+  --accent-hover: #a8853a;
+  --border: #ddd5c4;
+  --border-strong: #c4b99e;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(12, 11, 9, 0.06);
+  --shadow-md: 0 4px 12px rgba(12, 11, 9, 0.08);
+  --shadow-lg: 0 8px 30px rgba(12, 11, 9, 0.12);
+  --shadow-xl: 0 16px 50px rgba(12, 11, 9, 0.16);
+
+  /* Timing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Spacing scale (8px base) */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+  --sp-40: 10rem;
+  --sp-48: 12rem;
+  --sp-56: 14rem;
+  --sp-64: 16rem;
+
+  /* Grain */
+  --grain-opacity: 0.03;
+
+  /* Layout */
+  --nav-height: 4rem;
+  --content-max: 1400px;
+  --content-padding: clamp(1.5rem, 4vw, 3rem);
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --muted: #94a3b8;
-  --border: #1e293b;
-  --background-rgb: 15, 23, 42;
+  --bg: #0c0b09;
+  --bg-secondary: #1a1816;
+  --bg-tertiary: #2a2622;
+  --fg: #f0ece4;
+  --fg-secondary: #c4b99e;
+  --muted: #877b60;
+  --accent: #d4a832;
+  --accent-hover: #e5c25c;
+  --border: #3d3832;
+  --border-strong: #544c42;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.6);
+  --grain-opacity: 0.04;
 }
 
+/* ---- Base Reset & Typography ---- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,19 +128,95 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--fg);
   line-height: 1.6;
+  transition: background-color 0.4s var(--ease-out-quart), color 0.4s var(--ease-out-quart);
+  overflow-x: hidden;
 }
 
-/* Scrollbar styling */
+/* Grain overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/* ---- Type Scale ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 12vw, 10rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.heading-1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heading-2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.body-lg {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--fg-secondary);
+}
+
+/* ---- Scrollbar ---- */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -58,10 +224,87 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: var(--border-strong);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
+}
+
+/* ---- Utility Classes ---- */
+.text-accent { color: var(--accent); }
+.text-muted { color: var(--muted); }
+.text-fg-secondary { color: var(--fg-secondary); }
+.bg-surface { background-color: var(--bg); }
+.bg-surface-secondary { background-color: var(--bg-secondary); }
+
+/* Divider line */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Mask fade edges for horizontal scroll */
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* ---- Keyframes ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+body::after {
+  animation: grainShift 8s steps(10) infinite;
 }
