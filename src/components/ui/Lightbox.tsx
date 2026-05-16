@@ -35,7 +35,6 @@ export function Lightbox({ work, works, onClose, onNavigate }: LightboxProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!work) return;
-      
       switch (e.key) {
         case "Escape":
           onClose();
@@ -48,7 +47,6 @@ export function Lightbox({ work, works, onClose, onNavigate }: LightboxProps) {
           break;
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [work, onClose, handlePrev, handleNext]);
@@ -73,38 +71,101 @@ export function Lightbox({ work, works, onClose, onNavigate }: LightboxProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          transition={{ duration: 0.3 }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(12, 11, 9, 0.92)",
+            backdropFilter: "blur(20px)",
+          }}
           onClick={onClose}
         >
-          {/* Close button */}
+          {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white transition-colors z-10"
+            style={{
+              position: "absolute",
+              top: "1.5rem",
+              right: "1.5rem",
+              background: "none",
+              border: "1px solid rgba(240,236,228,0.3)",
+              color: "rgba(240,236,228,0.8)",
+              padding: "0.5rem",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              zIndex: 10,
+            }}
             aria-label="Close"
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.color = "var(--accent)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = "rgba(240,236,228,0.3)";
+              e.currentTarget.style.color = "rgba(240,236,228,0.8)";
+            }}
           >
-            <X className="w-8 h-8" />
+            <X style={{ width: "1.5rem", height: "1.5rem" }} />
           </button>
 
-          {/* Navigation buttons */}
+          {/* Nav */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handlePrev();
+            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+            style={{
+              position: "absolute",
+              left: "1.5rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "1px solid rgba(240,236,228,0.3)",
+              color: "rgba(240,236,228,0.8)",
+              padding: "0.75rem",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              zIndex: 10,
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white/80 hover:text-white transition-colors z-10"
             aria-label="Previous"
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.color = "var(--accent)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = "rgba(240,236,228,0.3)";
+              e.currentTarget.style.color = "rgba(240,236,228,0.8)";
+            }}
           >
-            <ChevronLeft className="w-10 h-10" />
+            <ChevronLeft style={{ width: "1.5rem", height: "1.5rem" }} />
           </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleNext();
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
+            style={{
+              position: "absolute",
+              right: "1.5rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "1px solid rgba(240,236,228,0.3)",
+              color: "rgba(240,236,228,0.8)",
+              padding: "0.75rem",
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              zIndex: 10,
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white/80 hover:text-white transition-colors z-10"
             aria-label="Next"
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.color = "var(--accent)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = "rgba(240,236,228,0.3)";
+              e.currentTarget.style.color = "rgba(240,236,228,0.8)";
+            }}
           >
-            <ChevronRight className="w-10 h-10" />
+            <ChevronRight style={{ width: "1.5rem", height: "1.5rem" }} />
           </button>
 
           {/* Image */}
@@ -113,26 +174,53 @@ export function Lightbox({ work, works, onClose, onNavigate }: LightboxProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="relative w-full h-full max-w-5xl max-h-[80vh] mx-4"
+            transition={{ duration: 0.25 }}
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              maxWidth: "80rem",
+              maxHeight: "80vh",
+              margin: "0 4rem",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={work.image}
               alt={work.title}
               fill
-              className="object-contain"
+              style={{ objectFit: "contain" }}
               sizes="(max-width: 1280px) 100vw, 1280px"
               priority
             />
           </motion.div>
 
           {/* Info */}
-          <div className="absolute bottom-4 left-0 right-0 text-center text-white">
-            <h3 className="text-lg font-semibold">{work.title}</h3>
-            <p className="text-sm text-white/60">
+          <div
+            style={{
+              position: "absolute",
+              bottom: "2rem",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              color: "#f0ece4",
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.25rem",
+                fontWeight: 400,
+              }}
+            >
+              {work.title}
+            </h3>
+            <div
+              className="label"
+              style={{ marginTop: "0.25rem" }}
+            >
               {currentIndex + 1} / {works.length}
-            </p>
+            </div>
           </div>
         </motion.div>
       )}

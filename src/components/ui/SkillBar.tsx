@@ -8,31 +8,63 @@ interface SkillBarProps {
   index?: number;
 }
 
-export function SkillBar({ skill, index = 0 }: SkillBarProps) {
-  const { name, level, maxLevel } = skill;
+export function SkillBar({ skill: { name, level, maxLevel }, index = 0 }: SkillBarProps) {
   const percentage = (level / maxLevel) * 100;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="space-y-2"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.06,
+        ease: [0.16, 1, 0.3, 1],
+      }}
     >
-      <div className="flex items-center justify-between">
-        <span className="font-medium text-sm">{name}</span>
-        <span className="text-muted text-sm">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          marginBottom: "var(--sp-2)",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "1.125rem",
+            fontWeight: 400,
+            color: "var(--fg)",
+          }}
+        >
+          {name}
+        </span>
+        <span className="label" style={{ color: "var(--accent)" }}>
           {level}/{maxLevel}
         </span>
       </div>
-      <div className="h-2 bg-muted/20 rounded-full overflow-hidden">
+      <div
+        style={{
+          height: "3px",
+          background: "var(--border)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${percentage}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: index * 0.1 + 0.2, ease: "easeOut" }}
-          className="h-full bg-primary-500 rounded-full"
+          transition={{
+            duration: 1,
+            delay: index * 0.1 + 0.3,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{
+            height: "100%",
+            background: "var(--accent)",
+          }}
         />
       </div>
     </motion.div>
