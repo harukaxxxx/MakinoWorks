@@ -7,10 +7,11 @@ import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Profile", href: "#profile" },
-  { label: "Resume", href: "#resume" },
-  { label: "Works", href: "#works" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Experience", href: "/experience" },
+  { label: "Skills", href: "/skills" },
+  { label: "Works", href: "/works" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {

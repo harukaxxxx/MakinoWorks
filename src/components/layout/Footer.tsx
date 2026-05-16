@@ -9,10 +9,16 @@ export function Footer() {
             &copy; {new Date().getFullYear()} MakinoWorks. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
+            <Link href="/experience" className="text-sm text-muted hover:text-foreground transition-colors">
+              Experience
+            </Link>
+            <Link href="/skills" className="text-sm text-muted hover:text-foreground transition-colors">
+              Skills
+            </Link>
             <Link href="/works" className="text-sm text-muted hover:text-foreground transition-colors">
               Works
             </Link>
-            <Link href="/#contact" className="text-sm text-muted hover:text-foreground transition-colors">
+            <Link href="/contact" className="text-sm text-muted hover:text-foreground transition-colors">
               Contact
             </Link>
           </div>
