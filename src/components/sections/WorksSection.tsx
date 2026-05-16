@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
 import { works } from "@/data/works";
 import { WorkCard } from "@/components/ui/WorkCard";
 import { Lightbox } from "@/components/ui/Lightbox";
@@ -21,49 +20,108 @@ export function WorksSection() {
 
   return (
     <>
-      <section id="works" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section
+        style={{
+          padding: "var(--sp-32) 0",
+          position: "relative",
+        }}
+      >
+        {/* Section header */}
+        <div
+          style={{
+            maxWidth: "var(--content-max)",
+            padding: "0 var(--content-padding)",
+            marginBottom: "var(--sp-12)",
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div
+              className="label"
+              style={{ color: "var(--accent)", marginBottom: "var(--sp-4)" }}
+            >
+              Selected Works
+            </div>
+            <h2 className="heading-1">
+              作品<span style={{ color: "var(--accent)" }}>.</span>
+            </h2>
+          </motion.div>
+
+          {/* Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-500/10 mb-4">
-              <Briefcase className="w-6 h-6 text-primary-500" />
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight">Works</h2>
-            <p className="mt-2 text-muted">作品集</p>
-          </motion.div>
-
-          {/* Category filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-2 mb-10"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{
+              display: "flex",
+              gap: "var(--sp-3)",
+              marginTop: "var(--sp-8)",
+              flexWrap: "wrap",
+            }}
           >
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === category
-                    ? "bg-primary-500 text-white"
-                    : "bg-muted/10 text-muted hover:bg-muted/20 hover:text-foreground"
-                }`}
+                className="label"
+                style={{
+                  padding: "var(--sp-2) var(--sp-4)",
+                  border: `1px solid ${
+                    selectedCategory === category
+                      ? "var(--accent)"
+                      : "var(--border)"
+                  }`,
+                  background:
+                    selectedCategory === category
+                      ? "var(--accent)"
+                      : "transparent",
+                  color:
+                    selectedCategory === category
+                      ? "var(--bg)"
+                      : "var(--muted)",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseOver={(e) => {
+                  if (selectedCategory !== category) {
+                    e.currentTarget.style.borderColor = "var(--accent)";
+                    e.currentTarget.style.color = "var(--accent)";
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (selectedCategory !== category) {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.color = "var(--muted)";
+                  }
+                }}
               >
-                {category === "all" ? "全部" : category.charAt(0).toUpperCase() + category.slice(1)}
+                {category === "all"
+                  ? "全部"
+                  : category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
           </motion.div>
+        </div>
 
-          {/* Works grid */}
+        {/* Works grid */}
+        <div
+          style={{
+            maxWidth: "var(--content-max)",
+            padding: "0 var(--content-padding)",
+          }}
+        >
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: "var(--sp-4)",
+            }}
           >
             {filteredWorks.map((work, index) => (
               <WorkCard
@@ -76,8 +134,16 @@ export function WorksSection() {
           </motion.div>
 
           {filteredWorks.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-muted">此分類暫無作品</p>
+            <div
+              style={{
+                textAlign: "center",
+                padding: "var(--sp-20) 0",
+                color: "var(--muted)",
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.25rem",
+              }}
+            >
+              此分類暫無作品
             </div>
           )}
         </div>

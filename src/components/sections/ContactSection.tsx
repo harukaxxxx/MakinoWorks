@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin, ExternalLink } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
 
 const contactInfo = [
@@ -21,78 +21,145 @@ const contactInfo = [
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20 bg-muted/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      style={{
+        padding: "var(--sp-32) var(--content-padding)",
+        maxWidth: "var(--content-max)",
+        margin: "0 auto",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "var(--sp-16)",
+          alignItems: "start",
+        }}
+        className="contact-grid"
+      >
+        {/* Left — CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-3xl font-bold mb-4">Contact</h2>
-          <div className="w-16 h-1 bg-primary-500 mx-auto" />
-          <p className="mt-4 text-muted">Get in touch for collaborations or inquiries</p>
+          <div
+            className="label"
+            style={{ color: "var(--accent)", marginBottom: "var(--sp-4)" }}
+          >
+            Contact
+          </div>
+          <h2 className="heading-1">
+            Let&apos;s Create
+            <br />
+            <span style={{ color: "var(--accent)" }}>Together</span>
+          </h2>
+          <div
+            style={{
+              width: "4rem",
+              height: "1px",
+              background: "var(--accent)",
+              margin: "var(--sp-8) 0",
+            }}
+          />
+          <p className="body-lg" style={{ maxWidth: "40ch" }}>
+            無論是空間設計、平面設計、動態影像還是網站設計的合作需求，
+            歡迎隨時聯繫。
+          </p>
         </motion.div>
 
+        {/* Right — Info + Socials */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-8)",
+            paddingTop: "var(--sp-8)",
+            borderTop: "1px solid var(--border)",
+          }}
         >
-          {contactInfo.map((item, index) => (
-            <motion.a
-              key={item.label}
-              href={item.href || undefined}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className={`group p-6 bg-background rounded-xl border border-border hover:border-primary-500/50 transition-colors ${
-                item.href ? "cursor-pointer" : "cursor-default"
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 text-primary-500">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-sm text-muted">{item.label}</h3>
-                  <p className="text-foreground font-medium">{item.value}</p>
-                </div>
-                {item.href && (
-                  <ExternalLink className="w-5 h-5 text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
-                )}
+          {contactInfo.map((item) => (
+            <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "var(--sp-1)" }}>
+              <div className="label" style={{ color: "var(--accent)" }}>
+                {item.label}
               </div>
-            </motion.a>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.125rem",
+                    color: "var(--fg)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.125rem",
+                    color: "var(--fg)",
+                  }}
+                >
+                  {item.value}
+                </span>
+              )}
+            </div>
           ))}
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <h3 className="text-sm font-medium text-muted mb-4">Or find me on social media</h3>
-          <div className="flex justify-center gap-4">
-            {profile.socials.slice(0, 4).map((social) => (
-              <a
-                key={social.platform}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-lg bg-background border border-border hover:border-primary-500 hover:text-primary-500 transition-colors text-sm"
-              >
-                {social.platform}
-              </a>
-            ))}
+          {/* Social links */}
+          <div style={{ marginTop: "var(--sp-4)" }}>
+            <div className="label" style={{ color: "var(--accent)", marginBottom: "var(--sp-3)" }}>
+              Social
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--sp-2)" }}>
+              {profile.socials.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "baseline",
+                    gap: "var(--sp-3)",
+                    color: "var(--muted)",
+                    textDecoration: "none",
+                    fontSize: "0.875rem",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                >
+                  <span style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.05em", minWidth: "6rem" }}>
+                    {social.platform}
+                  </span>
+                  <span style={{ opacity: 0.4 }}>→</span>
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
