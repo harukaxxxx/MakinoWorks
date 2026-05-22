@@ -32,7 +32,7 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 z-50"
         style={{
           backgroundColor: scrolled
-            ? "rgba(var(--bg-rgb, 250,246,239), 0.85)"
+            ? "rgba(var(--bg-rgb), 0.85)"
             : "transparent",
           backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
           borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
