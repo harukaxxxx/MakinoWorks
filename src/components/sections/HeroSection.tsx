@@ -12,7 +12,9 @@ import {
   Video,
   Palette,
   ArrowDown,
+  BookOpen,
 } from "lucide-react";
+
 import { profile } from "@/data/profile";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
@@ -23,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; size?: n
   image: ImageIcon,
   video: Video,
   palette: Palette,
+  "book-open": BookOpen,
 };
 
 const staggerContainer = {
@@ -65,22 +68,6 @@ export function HeroSection() {
         }}
       />
 
-      {/* Decorative line */}
-      <motion.div
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-        style={{
-          position: "absolute",
-          left: "var(--content-padding)",
-          top: "20%",
-          bottom: "20%",
-          width: "1px",
-          background: "var(--border)",
-          transformOrigin: "top",
-        }}
-      />
-
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -108,10 +95,35 @@ export function HeroSection() {
 
           {/* Name — the architectural element */}
           <motion.div variants={staggerItem}>
-            <h1 className="heading-display" style={{ color: "var(--fg)" }}>
-              牧野
-              <br />
-              <span style={{ color: "var(--accent)" }}>悠</span>
+            <h1
+              className="heading-display"
+              style={{
+                color: "var(--fg)",
+                display: "grid",
+                gridTemplateColumns: "auto auto",
+                gap: "0.1em 0.1em",
+                alignItems: "start",
+                width: "fit-content",
+              }}
+            >
+              <span style={{ gridColumn: 1, gridRow: 1, whiteSpace: "nowrap", fontWeight: 600 }}>牧</span>
+              <span style={{ gridColumn: 2, gridRow: 1, whiteSpace: "nowrap", fontWeight: 600 }}>野</span>
+              <span style={{ gridColumn: 1, gridRow: 2, color: "var(--accent)", whiteSpace: "nowrap", fontWeight: 600 }}>悠</span>
+              <span
+                style={{
+                  gridColumn: 2,
+                  gridRow: "1 / 3",
+                  fontSize: "clamp(1.0rem, 2vw, 2.5rem)",
+                  letterSpacing: "0.15em",
+                  lineHeight: 1.2,
+                  alignSelf: "end",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                MAKINO
+                <br />
+                HARUKA
+              </span>
             </h1>
           </motion.div>
 
@@ -305,36 +317,6 @@ export function HeroSection() {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        style={{
-          position: "absolute",
-          bottom: "var(--sp-8)",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "var(--sp-2)",
-        }}
-      >
-        <span className="label" style={{ fontSize: "0.6rem" }}>
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            width: "1px",
-            height: "2rem",
-            background: "var(--muted)",
-          }}
-        />
       </motion.div>
 
       {/* Responsive overrides */}
