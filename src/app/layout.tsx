@@ -29,13 +29,13 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "MakinoWorks — Creative Designer Portfolio",
   description:
-    "牧野春香的個人作品集。涵蓋空間設計、平面設計、動態影像、網站設計等多元創作。",
+    "牧野悠的個人作品集。涵蓋空間設計、平面設計、動態影像、網站設計等多元創作。",
   keywords: [
     "MakinoWorks",
     "Creative Designer",
     "Portfolio",
     "Makino Haruka",
-    "牧野春香",
+    "牧野悠",
   ],
   authors: [{ name: "Makino Haruka" }],
   openGraph: {

@@ -111,7 +111,7 @@ export function HeroSection() {
             <h1 className="heading-display" style={{ color: "var(--fg)" }}>
               牧野
               <br />
-              <span style={{ color: "var(--accent)" }}>春香</span>
+              <span style={{ color: "var(--accent)" }}>悠</span>
             </h1>
           </motion.div>
 
