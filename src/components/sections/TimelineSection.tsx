@@ -145,10 +145,13 @@ export function TimelineSection({
 
               {/* Description */}
               <p
-                className="body-lg"
                 style={{
-                  marginTop: "var(--sp-2)",
+                  marginTop: "var(--sp-3)",
                   maxWidth: "60ch",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.9375rem",
+                  lineHeight: 1.75,
+                  color: "var(--fg-secondary)",
                 }}
               >
                 {entry.description}
