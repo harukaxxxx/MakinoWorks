@@ -18,13 +18,7 @@ export function TimelineSection({
   accentFirst = false,
 }: TimelineSectionProps) {
   return (
-    <section
-      style={{
-        padding: "var(--sp-32) var(--content-padding)",
-        maxWidth: "var(--content-max)",
-        margin: "0 auto",
-      }}
-    >
+    <div>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -178,6 +172,6 @@ export function TimelineSection({
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
