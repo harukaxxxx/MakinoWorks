@@ -36,7 +36,7 @@ export function ExperienceSection() {
         >
           Experience
         </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "var(--sp-8)" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "var(--sp-8)", flexWrap: "wrap" }}>
           <h2 className="heading-1">
             經歷<span style={{ color: "var(--accent)" }}>.</span>
           </h2>
@@ -45,7 +45,6 @@ export function ExperienceSection() {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className="label"
                 style={{
                   background: "none",
                   border: "none",
@@ -57,6 +56,11 @@ export function ExperienceSection() {
                     activeTab === tab.key ? "var(--fg)" : "var(--muted)",
                   cursor: "pointer",
                   padding: "var(--sp-2) 0",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+                  fontWeight: 400,
+                  lineHeight: 1.2,
+                  letterSpacing: "0.05em",
                   transition: "all 0.3s ease",
                 }}
                 onMouseOver={(e) => {
@@ -88,10 +92,9 @@ export function ExperienceSection() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <TimelineSection
-              label="Work"
-              title="工作"
               data={work}
               accentFirst
+              showHeader={false}
             />
           </motion.div>
         ) : (
@@ -103,9 +106,8 @@ export function ExperienceSection() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <TimelineSection
-              label="Education"
-              title="學歷"
               data={education}
+              showHeader={false}
             />
           </motion.div>
         )}

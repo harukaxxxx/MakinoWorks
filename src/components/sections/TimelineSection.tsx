@@ -5,10 +5,11 @@ import Image from "next/image";
 import { Experience } from "@/lib/types";
 
 interface TimelineSectionProps {
-  label: string;
-  title: string;
+  label?: string;
+  title?: string;
   data: Experience[];
   accentFirst?: boolean;
+  showHeader?: boolean;
 }
 
 export function TimelineSection({
@@ -16,28 +17,35 @@ export function TimelineSection({
   title,
   data,
   accentFirst = false,
+  showHeader = true,
 }: TimelineSectionProps) {
   return (
     <div>
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={{ marginBottom: "var(--sp-16)" }}
-      >
-        <div
-          className="label"
-          style={{ color: "var(--accent)", marginBottom: "var(--sp-4)" }}
+      {showHeader && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ marginBottom: "var(--sp-16)" }}
         >
-          {label}
-        </div>
-        <h2 className="heading-1">
-          {title}
-          <span style={{ color: "var(--accent)" }}>.</span>
-        </h2>
-      </motion.div>
+          {label && (
+            <div
+              className="label"
+              style={{ color: "var(--accent)", marginBottom: "var(--sp-4)" }}
+            >
+              {label}
+            </div>
+          )}
+          {title && (
+            <h2 className="heading-1">
+              {title}
+              <span style={{ color: "var(--accent)" }}>.</span>
+            </h2>
+          )}
+        </motion.div>
+      )}
 
       {/* Timeline */}
       <div style={{ position: "relative" }}>
