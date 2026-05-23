@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Experience", href: "/experience" },
-  { label: "Skills", href: "/skills" },
-  { label: "Works", href: "/works" },
-  { label: "Contact", href: "/contact" },
+  { label: "經歷", href: "/experience" },
+  { label: "技能", href: "/skills" },
+  { label: "作品", href: "/works" },
+  { label: "聯絡", href: "/contact" },
 ];
 
 export function Navbar() {
