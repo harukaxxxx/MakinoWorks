@@ -1,6 +1,6 @@
 import type { Experience } from "@/lib/types";
 
-export const work: Experience[] = [
+export const career: Experience[] = [
   {
     id: "makinoworks",
     period: "2010 — 現在",

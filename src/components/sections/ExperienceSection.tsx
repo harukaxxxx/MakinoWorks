@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { education } from "@/data/education";
-import { work } from "@/data/work";
+import { career } from "@/data/career";
 import { TimelineSection } from "./TimelineSection";
 
 export function ExperienceSection() {
@@ -92,7 +92,7 @@ export function ExperienceSection() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <TimelineSection
-              data={work}
+              data={career}
               accentFirst
               showHeader={false}
             />
