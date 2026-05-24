@@ -83,7 +83,7 @@ export function AboutSection() {
               marginBottom: "var(--sp-6)",
             }}
           />
-          <p className="body-lg" style={{ maxWidth: "42ch" }}>
+          <p className="body-lg" style={{ maxWidth: "44ch", textAlign: "justify" }}>
             從 2010 年成立 MakinoWorks 以來，持續探索空間設計、平面設計、動態影像與網站設計等多元領域。
             相信設計不只是視覺的呈現，更是解決問題與傳達理念的方式。
           </p>
@@ -96,15 +96,19 @@ export function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--sp-8)",
-            paddingTop: "var(--sp-8)",
-            borderTop: "1px solid var(--border)",
+            paddingTop: "var(--sp-24)",
           }}
         >
-          {contactInfo.map((item) => (
-            <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "var(--sp-1)" }}>
+          {contactInfo.map((item, index) => (
+            <div 
+              key={item.label} 
+              style={{ 
+                display: "flex", 
+                flexDirection: "column", 
+                gap: "var(--sp-1)",
+                marginTop: index > 0 ? "var(--sp-4)" : undefined,
+              }}
+            >
               <div className="label" style={{ color: "var(--accent)" }}>
                 {item.label}
               </div>
@@ -112,23 +116,25 @@ export function AboutSection() {
                 <a
                   href={item.href}
                   style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "1.125rem",
-                    color: "var(--fg)",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.875rem",
+                    letterSpacing: "0.05em",
+                    color: "var(--muted)",
                     textDecoration: "none",
                     transition: "color 0.2s ease",
                   }}
                   onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
                 >
                   {item.value}
                 </a>
               ) : (
                 <span
                   style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "1.125rem",
-                    color: "var(--fg)",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.875rem",
+                    letterSpacing: "0.05em",
+                    color: "var(--muted)",
                   }}
                 >
                   {item.value}
