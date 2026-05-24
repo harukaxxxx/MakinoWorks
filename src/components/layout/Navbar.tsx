@@ -7,7 +7,6 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { label: "經歷", href: "/experience" },
-  { label: "技能", href: "/skills" },
   { label: "作品", href: "/works" },
   { label: "關於", href: "/about" },
 ];
