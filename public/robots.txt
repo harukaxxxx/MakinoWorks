@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://makinoworks.com/sitemap.xml

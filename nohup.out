@@ -1,0 +1,11 @@
+
+> makinoworks@2.0.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.18 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.174:3000
+
+ ✓ Starting...
+ ✓ Ready in 560ms
+[?25h
