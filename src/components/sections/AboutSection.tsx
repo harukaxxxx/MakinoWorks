@@ -1,6 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Mail, MapPin } from "lucide-react";
+import { profile } from "@/data/profile";
+
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "contact@makinoworks.com",
+    href: "mailto:contact@makinoworks.com",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Taipei, Taiwan",
+    href: null,
+  },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -72,50 +89,86 @@ export function AboutSection() {
           </p>
         </motion.div>
 
-        {/* Right — Stats */}
+        {/* Right — Info + Socials */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={fadeUp}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--sp-10)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-8)",
             paddingTop: "var(--sp-8)",
             borderTop: "1px solid var(--border)",
           }}
         >
-          {[
-            { number: "10+", label: "Years of\nExperience" },
-            { number: "50+", label: "Projects\nCompleted" },
-            { number: "7", label: "Disciplines\nMastered" },
-            { number: "∞", label: "Creative\nPassion" },
-          ].map((stat) => (
-            <div key={stat.label} style={{ marginBottom: "var(--sp-4)" }}>
-              <div
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                  fontWeight: 300,
-                  color: "var(--fg)",
-                  lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {stat.number}
+          {contactInfo.map((item) => (
+            <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "var(--sp-1)" }}>
+              <div className="label" style={{ color: "var(--accent)" }}>
+                {item.label}
               </div>
-              <div
-                className="label"
-                style={{
-                  marginTop: "var(--sp-2)",
-                  whiteSpace: "pre-line",
-                }}
-              >
-                {stat.label}
-              </div>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.125rem",
+                    color: "var(--fg)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <span
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.125rem",
+                    color: "var(--fg)",
+                  }}
+                >
+                  {item.value}
+                </span>
+              )}
             </div>
           ))}
+
+          {/* Social links */}
+          <div style={{ marginTop: "var(--sp-4)" }}>
+            <div className="label" style={{ color: "var(--accent)", marginBottom: "var(--sp-3)" }}>
+              Social
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--sp-2)" }}>
+              {profile.socials.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "baseline",
+                    gap: "var(--sp-3)",
+                    color: "var(--muted)",
+                    textDecoration: "none",
+                    fontSize: "0.875rem",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                >
+                  <span style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.05em", minWidth: "6rem" }}>
+                    {social.platform}
+                  </span>
+                  <span style={{ opacity: 0.4 }}>→</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
 

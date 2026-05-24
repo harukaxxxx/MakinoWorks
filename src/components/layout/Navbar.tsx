@@ -9,7 +9,7 @@ const navLinks = [
   { label: "經歷", href: "/experience" },
   { label: "技能", href: "/skills" },
   { label: "作品", href: "/works" },
-  { label: "聯絡", href: "/contact" },
+  { label: "關於", href: "/about" },
 ];
 
 export function Navbar() {
